@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Postingan;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,10 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+    public function feed() {
+        $count_postingan = Postingan::count();
+        $postingan = Postingan::inRandomOrder()->first();
+        return view('users.feed', compact('postingan', 'count_postingan'));
     }
 }
