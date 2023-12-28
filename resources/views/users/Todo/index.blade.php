@@ -40,7 +40,7 @@
         </div>
     </div>
     <br>
-    <div class="" style="overflow-x: scroll;">
+    <div style="overflow-x: scroll;">
         <table class="table">
             <thead>
                 <tr>
