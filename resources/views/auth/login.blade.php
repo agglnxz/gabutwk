@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth-app')
 
 @section('content')
 <div class="container">
@@ -8,6 +8,9 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                    <div class="text-center">
+                        <img class="mb-3" style="border-radius:50%;width:100px;height:100px;border:1px solid black;" src="{{ asset('bird-colorful-logo-gradient-vector_343694-1365.avif') }}" alt="">
+                    </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -58,10 +61,16 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link" style="text-decoration: none;" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                            </div>
+
+                        </div>
+                        <div class="row mt-2 mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <a href="/register" style="text-decoration: none;">Belum punya akun? Register</a>
                             </div>
                         </div>
                     </form>

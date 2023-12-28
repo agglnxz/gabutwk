@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PostinganController;
+use App\Http\Controllers\TodoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use App\Http\Controllers\PostinganController;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->middleware('guest');
 
 Auth::routes();
 
@@ -31,5 +32,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/like-postingan/{id}', [LikesController::class, 'LikePostingan'])->name('like.postingan');
     Route::post('/like-komentar-postingan/{postingan_id}/{comment_id}', [LikesController::class, 'LikeCommentPostingan'])->name('like.comment.postingan');
     Route::post('/beri-komentar/{id}', [CommentsController::class, 'StoreCommentPostingan'])->name('store.comment.postingan');
+    Route::resource('/todo', TodoController::class);
 });
 

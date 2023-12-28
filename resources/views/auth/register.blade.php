@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth-app')
 
 @section('content')
 <div class="container">
@@ -8,6 +8,9 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
+                    <div class="text-center">
+                        <img class="mb-3" style="border-radius:50%;width:100px;height:100px;border:1px solid black;" src="{{ asset('bird-colorful-logo-gradient-vector_343694-1365.avif') }}" alt="">
+                    </div>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -66,6 +69,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                <a href="/" style="text-decoration: none;">Sudah punya akun? Login</a>
                             </div>
                         </div>
                     </form>

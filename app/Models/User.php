@@ -61,4 +61,7 @@ class User extends Authenticatable
     public function RecipientComment() {
         return $this->hasMany(Comments::class, 'recipient_id');
     }
+    public function Todo() {
+        return $this->hasMany(Todo::class, 'user_id');
+    }
 }
