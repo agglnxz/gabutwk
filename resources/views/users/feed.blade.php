@@ -1,5 +1,23 @@
 @extends('layouts.app')
 @section('content')
+    <style>
+        #style-1::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        #style-1::-webkit-scrollbar {
+            width: 12px;
+            background-color: white;
+        }
+
+        #style-1::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+            background-color: #0d6efd;
+        }
+    </style>
     <div class="d-flex justify-content-center">
         <div class="d-flex justify-content-between text-center" style="width: 42rem;">
             <svg onclick="Redirect()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -131,75 +149,9 @@
 
                         <!-- Comments -->
 
-                        <!-- Input -->
-                        <div class="d-flex mb-3">
-                            <a href="">
-                                <img src="{{ asset($postingan->User->foto_profile) }}" class="border rounded-circle me-2"
-                                    alt="Avatar" style="height: 45px;width:45px;object-fit:cover;" />
-                            </a>
-                            <div class="form-outline w-100">
-                                <form id="FormStoreComment"
-                                    action="{{ route('store.comment.postingan', $postingan->id) }}" method="post">
-                                    @csrf
-                                    <label class="form-label" for="TextareaStoreComment">Bagikan komentar anda mengenai
-                                        postingan
-                                        ini.</label>
-                                    <textarea id="TextareaStoreComment" name="komentar" class="form-control" rows="2"
-                                        placeholder="Tulis komentar..."></textarea>
-                                    <button type="submit" onclick="StoreComment({{ $postingan->id }})"
-                                        class="btn btn-primary float-end my-2">Kirim</button>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- Input -->
-
-                        <div id="new-comment">
-
-                        </div>
-                        <!-- Answers -->
-                        @foreach ($postingan->Comment as $item)
-                            <!-- Single answer -->
-                            <div class="d-flex mb-3">
-                                <a href="">
-                                    <img src="{{ $item->Sender->foto_profile }}" class="border rounded-circle me-2"
-                                        alt="Avatar" style="height: 40px;width:40px;object-fit:cover;" />
-                                </a>
-                                <div>
-                                    <div class="bg-light rounded-3 px-3 py-1">
-                                        <a class="text-dark mb-0">
-                                            <strong>{{ $item->Sender->name }}</strong>
-                                        </a>
-                                        <a class="text-muted d-block">
-                                            <small>{{ $item->komentar }}</small>
-                                        </a>
-                                    </div>
-                                    <a class="text-muted small ms-3 me-2">
-                                        @if ($item->IsLike(Auth::user()->id))
-                                            <svg onclick="LikeComment({{ $postingan->id }},{{ $item->id }})"
-                                                class="text-primary" id="likeComment{{ $item->id }}"
-                                                xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12M32 112h40v88H32Z" />
-                                            </svg>
-                                        @else
-                                            <svg onclick="LikeComment({{ $postingan->id }},{{ $item->id }})"
-                                                class="text-dark" id="likeComment{{ $item->id }}"
-                                                xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12M32 112h40v88H32Z" />
-                                            </svg>
-                                        @endif
-                                        <span id="CountLikeComment{{ $item->id }}">{{ $item->CountLike() }}</span>
-                                    </a>
-                                    <a
-                                        class="text-muted small me-2"><strong>Reply</strong></a>
-                                </div>
-
-                            </div>
+                        <div class="scroll" style="height: 200px;overflow-x:auto;" id="style-1">
                             <!-- Input -->
-                            <div class="d-flex mx-5 mb-3">
+                            <div class="d-flex mb-3">
                                 <a href="">
                                     <img src="{{ asset($postingan->User->foto_profile) }}"
                                         class="border rounded-circle me-2" alt="Avatar"
@@ -209,20 +161,97 @@
                                     <form id="FormStoreComment"
                                         action="{{ route('store.comment.postingan', $postingan->id) }}" method="post">
                                         @csrf
-
+                                        <label class="form-label" for="TextareaStoreComment">Bagikan komentar anda
+                                            mengenai
+                                            postingan
+                                            ini.</label>
                                         <textarea id="TextareaStoreComment" name="komentar" class="form-control" rows="2"
                                             placeholder="Tulis komentar..."></textarea>
                                         <button type="submit" onclick="StoreComment({{ $postingan->id }})"
-                                            class="btn btn-primary float-end my-2">Kirim</button>
+                                            class="btn btn-primary float-start my-2">Kirim</button>
                                     </form>
                                 </div>
                             </div>
                             <!-- Input -->
-                        @endforeach
+                            <hr>
+                            <div id="new-comment">
 
-                        <!-- Answers -->
+                            </div>
+                            <!-- Answers -->
+                            @foreach ($postingan->Comment as $item)
+                                <!-- Single answer -->
+                                <div class="d-flex mb-3">
+                                    <a href="">
+                                        <img src="{{ $item->Sender->foto_profile }}" class="border rounded-circle me-2"
+                                            alt="Avatar" style="height: 40px;width:40px;object-fit:cover;" />
+                                    </a>
+                                    <div>
+                                        <div class="bg-light rounded-3 px-3 py-1">
+                                            <a class="text-dark mb-0">
+                                                <strong>{{ $item->Sender->name }}</strong>
+                                            </a>
+                                            <a class="text-muted d-block">
+                                                @if ($item->parent_comment_id != null)
+                                                <a href="#">@</a><a href="#">{{ $item->Recipient->name }}</a>
+                                               @endif <small>{{ $item->komentar }}</small>
+                                            </a>
+                                        </div>
+                                        <a class="text-muted small ms-3 me-2">
+                                            @if ($item->IsLike(Auth::user()->id))
+                                                <svg onclick="LikeComment({{ $postingan->id }},{{ $item->id }})"
+                                                    class="text-primary" id="likeComment{{ $item->id }}"
+                                                    xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 256 256">
+                                                    <path fill="currentColor"
+                                                        d="M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12M32 112h40v88H32Z" />
+                                                </svg>
+                                            @else
+                                                <svg onclick="LikeComment({{ $postingan->id }},{{ $item->id }})"
+                                                    class="text-dark" id="likeComment{{ $item->id }}"
+                                                    xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 256 256">
+                                                    <path fill="currentColor"
+                                                        d="M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12M32 112h40v88H32Z" />
+                                                </svg>
+                                            @endif
+                                            <span
+                                                id="CountLikeComment{{ $item->id }}">{{ $item->CountLike() }}</span>
+                                        </a>
+                                        <a data-bs-toggle="collapse" href="#Reply{{ $item->id }}" role="button" aria-expanded="false" aria-controls="Reply{{ $item->id }}"
+                                            class="text-muted small me-2"><strong>Reply</strong></a>
+                                    </div>
 
+                                </div>
+                                <!-- Input -->
+                                <div class="collapse" id="Reply{{ $item->id }}">
+                                    <div class="d-flex mx-5 mb-3">
+                                        <a href="">
+                                            <img src="{{ asset($postingan->User->foto_profile) }}"
+                                                class="border rounded-circle me-2" alt="Avatar"
+                                                style="height: 45px;width:45px;object-fit:cover;" />
+                                        </a>
+                                        <div class="form-outline w-100">
+                                            <form id="FormStoreRComment{{ $item->id }}"
+                                                action="{{ route('store.comment.postingan', $postingan->id) }}"
+                                                method="post">
+                                                @csrf
+                                                <input type="hidden" name="parent_comment" value="{{ $item->id }}">
+                                                <textarea id="TextareaStoreRComment{{ $item->id }}" name="komentar" class="form-control" rows="2"
+                                                    placeholder="Tulis komentar..."></textarea>
+                                                <button type="submit" onclick="StoreRComment({{ $postingan->id }}, {{ $item->id }})"
+                                                    class="btn btn-primary float-end my-2">Kirim</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Input -->
+                            @endforeach
+
+                            <!-- Answers -->
+
+                        </div>
                         <!-- Comments -->
+
                     </div>
                     <!-- Interactions -->
                 </div>
@@ -230,6 +259,7 @@
             <!--Section: Newsfeed-->
         </div>
     @endif
+
     <script>
         // like comment
         function LikeComment(postingan, comment) {
@@ -292,10 +322,39 @@
                                             <small>${response.komentar}</small>
                                         </a>
                                     </div>
-                                    <a href="" class="text-muted small ms-3 me-2"><strong
-                                            class="me-1">Like</strong><span>0</span></a>
-                                    <a href="" class="text-muted small me-2"><strong>Reply</strong></a>
+                                    <svg onclick="LikeComment(${response.postingan_id},${response.comment_id})"
+                                                    class="text-dark" id="likeComment${response.comment_id}"
+                                                    xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 256 256">
+                                                    <path fill="currentColor"
+                                                        d="M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12M32 112h40v88H32Z" />
+                                                </svg>
+                                            <span
+                                                id="CountLikeComment${response.comment_id}">0</span>
+                                        </a>
+                                        <a data-bs-toggle="collapse" href="#Reply${response.comment_id}" role="button" aria-expanded="false" aria-controls="Reply${response.comment_id}"
+                                            class="text-muted small me-2"><strong>Reply</strong></a>
                                 </div>
+                            </div>
+                            <div class="collapse" id="Reply${response.comment_id}">
+                                    <div class="d-flex mx-5 mb-3">
+                                        <a href="">
+                                            <img src="${response.foto_profile}"
+                                        class="border rounded-circle me-2" alt="Avatar" style="height: 40px;width:40px;object-fit:cover;" />
+                                        </a>
+                                        <div class="form-outline w-100">
+                                            <form id="FormStoreRComment${response.comment_id}"
+                                                action="/beri-komentar/${response.postingan_id}"
+                                                method="post">
+                                                @csrf
+                                                <input type="hidden" name="parent_comment" value="${response.comment_id}">
+                                                <textarea id="TextareaStoreRComment${response.comment_id}" name="komentar" class="form-control" rows="2"
+                                                    placeholder="Tulis komentar..."></textarea>
+                                                <button type="submit" onclick="StoreRComment(${response.postingan_id}, ${response.comment_id})"
+                                                    class="btn btn-primary float-end my-2">Kirim</button>
+                                            </form>
+                                        </div>
+                                    </div>
                             </div>
                         `
                         $("#new-comment").append(new_comment);
@@ -305,7 +364,85 @@
                         iziToast.error({
                             'title': 'Error',
                             'message': xhr.responseText,
-                            'position': 'topConter'
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
+        function StoreRComment(id, item) {
+            $("#FormStoreRComment"+item).off("submit");
+            $("#FormStoreRComment"+item).submit(function(event) {
+                event.preventDefault();
+                let data = new FormData($(this)[0]);
+                let route = $(this).attr("action");
+                $.ajax({
+                    url: route,
+                    method: 'POST',
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function success(response) {
+                        $("#TextareaStoreRComment"+item).val('');
+                        let new_comment = `
+                        <div class="d-flex mb-3">
+                                <a href="">
+                                    <img src="${response.foto_profile}"
+                                        class="border rounded-circle me-2" alt="Avatar" style="height: 40px;width:40px;object-fit:cover;" />
+                                </a>
+                                <div>
+                                    <div class="bg-light rounded-3 px-3 py-1">
+                                        <a href="" class="text-dark mb-0">
+                                            <strong>${response.nama}</strong>
+                                        </a>
+                                        <a href="" class="text-muted d-block">
+                                           <a href="#">${response.nama_penerima}</a> <small>${response.komentar}</small>
+                                        </a>
+                                    </div>
+                                    <svg onclick="LikeComment(${response.postingan_id},${response.comment_id})"
+                                                    class="text-dark" id="likeComment${response.comment_id}"
+                                                    xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 256 256">
+                                                    <path fill="currentColor"
+                                                        d="M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12M32 112h40v88H32Z" />
+                                                </svg>
+                                            <span
+                                                id="CountLikeComment${response.comment_id}">0</span>
+                                        </a>
+                                        <a data-bs-toggle="collapse" href="#Reply${response.comment_id}" role="button" aria-expanded="false" aria-controls="Reply${response.comment_id}"
+                                            class="text-muted small me-2"><strong>Reply</strong></a>
+                                </div>
+                            </div>
+                            <div class="collapse" id="Reply${response.comment_id}">
+                                    <div class="d-flex mx-5 mb-3">
+                                        <a href="">
+                                            <img src="${response.foto_profile}"
+                                        class="border rounded-circle me-2" alt="Avatar" style="height: 40px;width:40px;object-fit:cover;" />
+                                        </a>
+                                        <div class="form-outline w-100">
+                                            <form id="FormStoreRComment${response.comment_id}"
+                                                action="/beri-komentar/${response.postingan_id}"
+                                                method="post">
+                                                @csrf
+                                                <input type="hidden" name="parent_comment" value="${response.comment_id}">
+                                                <textarea id="TextareaStoreRComment${response.comment_id}" name="komentar" class="form-control" rows="2"
+                                                    placeholder="Tulis komentar..."></textarea>
+                                                <button type="submit" onclick="StoreRComment(${response.postingan_id}, ${response.comment_id})"
+                                                    class="btn btn-primary float-end my-2">Kirim</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                            </div>
+                        `
+
+                        $("#new-comment").append(new_comment);
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
                         });
                     }
                 });
