@@ -1,5 +1,23 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    #style-1::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        background-color: white;
+    }
+
+    #style-1::-webkit-scrollbar {
+        width: 12px;
+        background-color: white;
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: #0d6efd;
+    }
+</style>
 <div class="container">
     <h3 class="text-center">
         <a href="/todo">TodoApp with SOLID PRINCIPAL</a>

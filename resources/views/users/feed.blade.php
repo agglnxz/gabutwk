@@ -19,10 +19,17 @@
         }
     </style>
     <div class="d-flex justify-content-center">
-        <div class="d-flex justify-content-between text-center" style="width: 42rem;">
+        <div @if ($postingan)
+        class="d-flex justify-content-between text-center"
+        @else
+        class="d-flex justify-content-center text-center"
+        @endif style="width: 42rem;">
+            @if ($postingan)
             <svg onclick="Redirect()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                 <path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z" />
             </svg>
+            @endif
+
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Tambah Postingan Anda.
@@ -51,9 +58,12 @@
                     </div>
                 </div>
             </div>
+
+            @if ($postingan)
             <svg onclick="Redirect()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M16.175 13H4v-2h12.175l-5.6-5.6L12 4l8 8l-8 8l-1.425-1.4z" />
             </svg>
+            @endif
         </div>
     </div>
     @if ($count_postingan == 0)
