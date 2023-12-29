@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,5 +34,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/like-komentar-postingan/{postingan_id}/{comment_id}', [LikesController::class, 'LikeCommentPostingan'])->name('like.comment.postingan');
     Route::post('/beri-komentar/{id}', [CommentsController::class, 'StoreCommentPostingan'])->name('store.comment.postingan');
     Route::resource('/todo', TodoController::class);
+    Route::resource('/blog', BlogController::class);
 });
 
