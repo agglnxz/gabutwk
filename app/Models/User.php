@@ -64,4 +64,7 @@ class User extends Authenticatable
     public function Todo() {
         return $this->hasMany(Todo::class, 'user_id');
     }
+    public function Blog() {
+        return $this->hasMany(Blogs::class, 'user_id');
+    }
 }
