@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Services;
+
+use App\Contracts\TodoInterface;
 use App\Models\Todo;
-use App\Repositories\TodoRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class TodoService
 {
     protected $TodoRepositoryInterface;
-    public function __construct(TodoRepositoryInterface $TodoRepositoryInterface)
+    public function __construct(TodoInterface $TodoRepositoryInterface)
     {
         $this->TodoRepositoryInterface = $TodoRepositoryInterface;
     }

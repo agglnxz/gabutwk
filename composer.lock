@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c71f6f4a1b07fc4de3a2b464756b57dd",
+    "content-hash": "5907f9d4979778bd371dcbc1cab0f989",
     "packages": [
         {
             "name": "brick/math",
@@ -8348,6 +8348,67 @@
                 }
             ],
             "time": "2023-12-21T09:43:05+00:00"
+        },
+        {
+            "name": "stephenjude/extended-artisan-commands",
+            "version": "3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stephenjude/extended-artisan-commands.git",
+                "reference": "46743a35004b6fffa5e249b9e91ec0c5d3c4cf22"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stephenjude/extended-artisan-commands/zipball/46743a35004b6fffa5e249b9e91ec0c5d3c4cf22",
+                "reference": "46743a35004b6fffa5e249b9e91ec0c5d3c4cf22",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0|^7.0|^8.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Stephenjude\\ExtendedArtisanCommands\\ExtendedArtisanCommandsServiceProvider"
+                    ],
+                    "aliases": {
+                        "ExtendedArtisanCommands": "Stephenjude\\ExtendedArtisanCommands\\ExtendedArtisanCommandsFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Stephenjude\\ExtendedArtisanCommands\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Jude",
+                    "email": "stephenjudesuccess@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generate plain PHP files using artisan console commands.",
+            "homepage": "https://github.com/stephenjude/extended-artisan-commands",
+            "keywords": [
+                "extended-artisan-commands",
+                "stephenjude"
+            ],
+            "support": {
+                "issues": "https://github.com/stephenjude/extended-artisan-commands/issues",
+                "source": "https://github.com/stephenjude/extended-artisan-commands/tree/3.0.3"
+            },
+            "time": "2023-06-01T12:38:09+00:00"
         },
         {
             "name": "symfony/yaml",

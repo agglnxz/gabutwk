@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
+use App\Contracts\TodoInterface;
 use App\Repositories\EloquentTodoRepository;
-use App\Repositories\TodoRepositoryInterface;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(TodoRepositoryInterface::class, EloquentTodoRepository::class);
+        $this->app->bind(TodoInterface::class, EloquentTodoRepository::class);
     }
 
     /**

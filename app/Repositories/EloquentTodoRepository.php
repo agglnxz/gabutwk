@@ -2,7 +2,8 @@
 
 namespace App\Repositories;
 use App\Models\Todo;
-class EloquentTodoRepository implements TodoRepositoryInterface
+use App\Contracts\TodoInterface;
+class EloquentTodoRepository implements TodoInterface
 {
     public function __construct()
     {

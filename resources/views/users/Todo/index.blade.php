@@ -62,21 +62,21 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Tugas</th>
+                    <th scope="col" class="text-center">No</th>
+                    <th scope="col" class="text-center">Tugas</th>
                     <th scope="col" class="text-center">Tanggal Awal</th>
                     <th scope="col" class="text-center">Tanggal Akhir</th>
-                    <th scope="col">Aksi</th>
+                    <th scope="col" class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($todo as $nomer => $item)
                     <tr>
-                        <th scope="row">{{ $nomer += 1 }}</th>
-                        <td>{{ $item->tugas }}</td>
-                        <td>{{ $item->tanggal_awal }}</td>
-                        <td>{{ $item->tanggal_akhir }}</td>
-                        <td class="d-flex justify-content-start">
+                        <th class="text-center" scope="row">{{ $nomer += 1 }}</th>
+                        <td class="text-center">{{ $item->tugas }}</td>
+                        <td class="text-center">{{ $item->tanggal_awal }}</td>
+                        <td class="text-center">{{ $item->tanggal_akhir }}</td>
+                        <td class="d-flex justify-content-center pb-4">
                             <form action="{{ route('todo.destroy', $item->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
