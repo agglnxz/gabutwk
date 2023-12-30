@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blogs;
 use App\Services\BlogService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -18,8 +19,8 @@ class BlogController extends Controller
     }
     public function index()
     {
-        $blog = Blogs::all();
-        return view("users.Blog.index", compact("blog"));
+        $blogs = Blogs::where('user_id', Auth::user()->id)->get();
+        return view("users.Blog.index", compact("blogs"));
     }
 
     /**
@@ -35,7 +36,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $this->BlogService->store($request);
+        $this->BlogService->store_blog($request);
         return redirect()->back()->with('success', 'Sukses menambahkan blog!');
     }
 
@@ -60,7 +61,7 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blogs $blog)
     {
-        $this->BlogService->update($request, $blog);
+        $this->BlogService->update_blog($request, $blog);
         return redirect()->back()->with('success', 'Sukses mengupdate blog!');
     }
 
@@ -69,7 +70,7 @@ class BlogController extends Controller
      */
     public function destroy(Blogs $blog)
     {
-        $this->BlogService->destroy($blog);
+        $this->BlogService->destroy_blog($blog);
         return redirect()->back()->with('success', 'Sukses menghapus blog!');
     }
 }
