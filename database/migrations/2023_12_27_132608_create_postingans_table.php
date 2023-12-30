@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('postingan', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('uuid')->unique();
+            $table->foreignUuid('user_id')->references('uuid')->on('users')->onDelete('cascade');
             $table->string('postingan');
             $table->text('deskripsi');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
