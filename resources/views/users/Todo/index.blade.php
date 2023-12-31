@@ -48,7 +48,7 @@
                             <input type="date" name="tanggal_awal" id="tanggal_awal" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label for="tanggal_akhir" class="form-label">Tanggal Awal</label>
+                            <label for="tanggal_akhir" class="form-label">Tanggal Akhir</label>
                             <input type="date" name="tanggal_akhir" id="tanggal_akhir" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-primary">Tambah</button>
@@ -113,7 +113,7 @@
                                                         class="form-control">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="tanggal_akhir" class="form-label">Tanggal Awal</label>
+                                                    <label for="tanggal_akhir" class="form-label">Tanggal akhir</label>
                                                     <input type="date" name="tanggal_akhir" value="{{ $item->tanggal_akhir }}" id="tanggal_akhir"
                                                         class="form-control">
                                                 </div>
