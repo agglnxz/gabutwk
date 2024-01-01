@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class Blogs extends Model
 {
     use HasFactory;
-    protected $primaryKey = "uuid";
+    protected $primaryKey = "id";
     protected $keyType = "string";
     public $incrementing = false;
     protected $table = 'blogs';
@@ -22,7 +22,7 @@ class Blogs extends Model
     protected static function boot() {
         parent::boot();
         static::creating(function($model){
-            $model->uuid = Str::uuid()->toString();
+            $model->id = Str::uuid()->toString();
         });
     }
     public function User() {

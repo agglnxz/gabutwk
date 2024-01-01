@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('postingan', function (Blueprint $table) {
-            $table->uuid('uuid')->unique();
-            $table->foreignUuid('user_id')->references('uuid')->on('users')->onDelete('cascade');
+            $table->uuid('id')->unique();
+            $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('postingan');
             $table->text('deskripsi');
             $table->timestamps();

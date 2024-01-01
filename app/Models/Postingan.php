@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class Postingan extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'id';
     protected $keyType = "string";
     public $incrementing = false;
     protected $table = "postingan";
@@ -21,7 +21,7 @@ class Postingan extends Model
     protected static function boot() {
         parent::boot();
         static::creating(function ($model) {
-            $model->uuid = Str::uuid()->toString();
+            $model->id = Str::uuid()->toString();
         });
     }
     public function User() {

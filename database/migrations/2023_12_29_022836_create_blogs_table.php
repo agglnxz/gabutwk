@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('blogs', function (Blueprint $table) {
-            $table->uuid('uuid')->unique();
-            $table->foreignUuid('user_id')->references('uuid')->on('users')->onDelete('cascade');
+            $table->uuid('id')->unique();
+            $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('judul_blog');
             $table->string('foto_blog');
             $table->longText('isi_blog');

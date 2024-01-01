@@ -37,7 +37,7 @@ class PostinganController extends Controller
             'postingan.required' => 'Postingan harus diisi!',
             'postingan.mimes' => 'Extensi postingan tidak valid!',
             'postingan.max' => 'Maksimal postingan 50MB!',
-            'deskripsi.required' => 'Postingan harus diisi!',
+            'deskripsi.required' => 'Deskripsi harus diisi!',
             'deskripsi.max' => 'Deskripsi postingan maksimal 225 karakter'
         ]);
         if($validate->fails()) {

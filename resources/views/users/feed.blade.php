@@ -50,7 +50,7 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <input type="file" name="postingan" id="postingan" class="form-control" required>
-                                <textarea name="deskripsi" id="deskripsi" class="form-control mt-2 mb-2" cols="30" rows="10" required></textarea>
+                                <input name="deskripsi" id="deskripsi" class="form-control mt-2 mb-2" cols="30" rows="10" required></input>
                                 <button type="button" onclick="ButtonTambahPostingan()"
                                     class="btn btn-primary">Tambah</button>
                             </form>

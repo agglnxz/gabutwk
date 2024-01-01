@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('todo', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id')->references('uuid')->on('users')->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('tugas');
             $table->date('tanggal_awal');
             $table->date('tanggal_akhir');
