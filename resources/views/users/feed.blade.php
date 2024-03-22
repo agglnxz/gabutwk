@@ -45,6 +45,7 @@
                         </div>
                         <div class="modal-body">
                             <div id="loading" class="text-center">
+                                
                             </div>
                             <form action="{{ route('postingan.store') }}" id="FormTambahPostingan" method="post"
                                 enctype="multipart/form-data">
